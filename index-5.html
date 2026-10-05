@@ -427,7 +427,7 @@ footer{background:var(--lagoon);color:var(--on-dark);padding:80px 0 0}
     var addons = Array.prototype.map.call(form.querySelectorAll('input[name="addons"]:checked'), function(x){ return x.value; }).join(', ') || 'None';
     var data = {
       _subject: 'Booking request: ' + fmt(ci.value) + ' to ' + fmt(co.value) + ' (' + name.value.trim() + ')',
-      _template: 'table', _captcha: 'false', _cc: 'olympia@olympiadmc.com', _replyto: email.value,    _template: 'table', _captcha: 'false', _cc: 'olympia@olympiadmc.com', _replyto: email.value, _url: location.href, Website: location.href,
+      _template: 'table', _captcha: 'false', _cc: 'olympia@olympiadmc.com', _replyto: email.value,   _template: 'table', _captcha: 'false', _cc: 'olympia@olympiadmc.com', _replyto: email.value, _url: location.href, Website: location.href,   _template: 'table', _captcha: 'false', _cc: 'olympia@olympiadmc.com', _replyto: email.value, _url: location.href, Website: location.href,
       Name: name.value.trim(), Email: email.value, Phone: document.getElementById('bPhone').value || 'Not provided',
       'Check-in': fmt(ci.value), 'Check-out': fmt(co.value), Nights: String(nights),
       Guests: document.getElementById('guests').value, 'Add-ons': addons,
