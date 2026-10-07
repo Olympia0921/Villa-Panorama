@@ -425,8 +425,7 @@ footer{background:var(--lagoon);color:var(--on-dark);padding:80px 0 0}
         <span>Caesar Campbell</span>
         <a href="tel:+16492316607">+1 649 231 6607 (TCI)</a>
         <a href="tel:+19547600023">+1 954 760 0023 (US)</a>
-        <a href="mailto:caesar@olympiadmc.com">caesar@olympiadmc.com</a>
-        <a href="mailto:olympia@olympiadmc.com">olympia@olympiadmc.com</a>
+        <a href="mailto:reservations@villapanoramatci.com">reservations@villapanoramatci.com</a>
       </div>
       <div class="col" style="align-items:flex-start">
         <h3>Fastest reply</h3>
@@ -448,7 +447,7 @@ footer{background:var(--lagoon);color:var(--on-dark);padding:80px 0 0}
 
 <script>
 (function(){
-  var BOOKING_EMAIL = 'caesar@olympiadmc.com';
+  var BOOKING_EMAIL = 'reservations@villapanoramatci.com';
   var ci = document.getElementById('checkin'), co = document.getElementById('checkout');
   var today = new Date(); today.setMinutes(today.getMinutes() - today.getTimezoneOffset());
   var iso = today.toISOString().slice(0,10);
@@ -471,7 +470,7 @@ footer{background:var(--lagoon);color:var(--on-dark);padding:80px 0 0}
     var addons = Array.prototype.map.call(form.querySelectorAll('input[name="addons"]:checked'), function(x){ return x.value; }).join(', ') || 'None';
     var data = {
       _subject: 'Booking request: ' + fmt(ci.value) + ' to ' + fmt(co.value) + ' (' + name.value.trim() + ')',
-      _template: 'table', _captcha: 'false', _cc: 'olympia@olympiadmc.com', _replyto: email.value, _url: location.href, Website: location.href,
+      _template: 'table', _captcha: 'false', _replyto: email.value, _url: location.href, Website: location.href,
       Name: name.value.trim(), Email: email.value, Phone: document.getElementById('bPhone').value || 'Not provided',
       'Check-in': fmt(ci.value), 'Check-out': fmt(co.value), Nights: String(nights),
       Guests: document.getElementById('guests').value, 'Add-ons': addons,
@@ -492,7 +491,7 @@ footer{background:var(--lagoon);color:var(--on-dark);padding:80px 0 0}
       }
       var body = Object.keys(data).filter(function(k){ return k.charAt(0) !== '_'; }).map(function(k){ return k + ': ' + data[k]; }).join('\n');
       msg.className = 'book-msg err';
-      msg.innerHTML = 'We couldn\u2019t send your request just now. <a href="mailto:' + BOOKING_EMAIL + '?cc=olympia@olympiadmc.com&subject=' + encodeURIComponent(data._subject) + '&body=' + encodeURIComponent(body) + '">Email it to us instead</a>.' + (err && err.server ? ' (' + err.server.replace(/</g,'&lt;') + ')' : '');
+      msg.innerHTML = 'We couldn\u2019t send your request just now. <a href="mailto:' + BOOKING_EMAIL + '?subject=' + encodeURIComponent(data._subject) + '&body=' + encodeURIComponent(body) + '">Email it to us instead</a>.' + (err && err.server ? ' (' + err.server.replace(/</g,'&lt;') + ')' : '');
     })
     .then(function(){ btn.disabled = false; btn.textContent = 'Send booking request'; });
   });
