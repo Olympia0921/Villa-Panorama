@@ -233,7 +233,7 @@ footer{background:var(--lagoon);color:var(--on-dark);padding:80px 0 0}
           <a href="#gallery">Gallery</a><a href="#location">Location</a><a href="#rates">Rates</a><a href="#contact">Contact</a>
         </div>
       </details>
-      <a class="btn" href="#book">Request to book</a>
+      <a class="btn" href="https://secure.webrez.com/hotel/2781/?package_id=326805" target="_blank" rel="noopener">Book now</a>
     </nav>
   </div>
 </header>
@@ -252,43 +252,17 @@ footer{background:var(--lagoon);color:var(--on-dark);padding:80px 0 0}
 
   <section class="book" id="book" aria-labelledby="book-title">
     <div class="wrap">
-      <h2 id="book-title" style="font-size:30px;margin-bottom:8px">Request a booking</h2>
-      <p class="muted" style="margin-bottom:6px">Step 1: Send your dates and any add-ons. Our reservations team will review your request and reply by email.</p>
-      <p class="muted" style="margin-bottom:18px">Step 2: Once your request is approved, complete your reservation online using the Book now button below.</p>
-      <form class="book-card" id="bookForm" novalidate>
-        <label class="field">Full name *<input type="text" name="name" id="bName" autocomplete="name" required></label>
-        <label class="field">Email *<input type="email" name="email" id="bEmail" autocomplete="email" required></label>
-        <label class="field">Phone or WhatsApp<input type="tel" name="phone" id="bPhone" autocomplete="tel"></label>
-        <label class="field">Check-in *<input type="date" name="check_in" id="checkin" required></label>
-        <label class="field">Check-out *<input type="date" name="check_out" id="checkout" required></label>
-        <label class="field">Guests *
-          <select name="guests" id="guests">
-            <option>1–2 guests</option><option>3–4 guests</option><option selected>5–6 guests</option><option>7–8 guests (with efficiency suite)</option>
-          </select>
-        </label>
-        <fieldset class="field addons" style="grid-column:1/-1;border:0;padding:0;margin:0">
-          <legend style="padding:0;margin-bottom:6px">Optional add-ons (additional charge)</legend>
-          <label class="check"><input type="checkbox" name="addons" value="Private chef"> Private chef</label>
-          <label class="check"><input type="checkbox" name="addons" value="Butler"> Butler</label>
-          <span style="margin-top:14px;margin-bottom:2px">Included on request (no extra charge)</span>
-          <label class="check"><input type="checkbox" name="addons" value="Private efficiency suite"> Private efficiency suite, if you need an additional room</label>
-        </fieldset>
-        <label class="field" style="grid-column:1/-1">Message or special requests<textarea name="message" id="bMsgText" rows="4"></textarea></label>
-        <input type="text" name="_honey" id="bHoney" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
-        <button class="btn" type="submit" id="bSubmit" style="grid-column:1/-1;justify-self:start">Send booking request</button>
-      </form>
-      <p class="book-msg" id="bookMsg" aria-live="polite"></p>
-      <div class="book-card" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 28px;margin-top:20px">
-        <div style="display:flex;flex-direction:column;gap:6px;max-width:56ch">
-          <h3 style="font-size:24px">Request approved?</h3>
-          <p class="muted">Check availability and complete your reservation online.</p>
+      <div class="book-card" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 28px">
+        <div style="display:flex;flex-direction:column;gap:6px;max-width:58ch">
+          <h2 id="book-title" style="font-size:30px">Book your stay</h2>
+          <p class="muted">Check live availability and rates, add a private chef, butler or the private efficiency suite, and reserve online in a few minutes.</p>
         </div>
         <div style="display:flex;flex-wrap:wrap;gap:12px">
           <a class="btn ghost" href="https://secure.webrez.com/hotel/2781/?package_id=326805" target="_blank" rel="noopener" style="min-height:54px;padding:0 28px;font-size:17px;color:var(--teal)">Check availability</a>
           <a class="btn" href="https://secure.webrez.com/hotel/2781/?package_id=326805" target="_blank" rel="noopener" style="min-height:54px;padding:0 32px;font-size:17px">Book now</a>
         </div>
       </div>
-      <p class="book-note muted">Booking requests are not confirmed until our team approves them. Prefer to chat? <a href="https://wa.me/16492316607" target="_blank" rel="noopener">Message us on WhatsApp</a>.</p>
+      <p class="book-note muted">Questions before you book? <a href="mailto:reservations@villapanoramatci.com">Email our reservations team</a> or <a href="https://wa.me/16492316607" target="_blank" rel="noopener">message us on WhatsApp</a>.</p>
     </div>
   </section>
 
@@ -475,56 +449,6 @@ footer{background:var(--lagoon);color:var(--on-dark);padding:80px 0 0}
 
 <script>
 (function(){
-  var BOOKING_EMAIL = 'reservations@villapanoramatci.com';
-  var ci = document.getElementById('checkin'), co = document.getElementById('checkout');
-  var today = new Date(); today.setMinutes(today.getMinutes() - today.getTimezoneOffset());
-  var iso = today.toISOString().slice(0,10);
-  var OPENING = '2026-11-15'; if (iso < OPENING) iso = OPENING;
-  ci.min = iso; co.min = iso;
-  ci.addEventListener('change', function(){ if (ci.value) co.min = ci.value; });
-  function fmt(d){ return new Date(d + 'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}); }
-
-  var form = document.getElementById('bookForm'), msg = document.getElementById('bookMsg'), btn = document.getElementById('bSubmit');
-  function say(t, cls){ msg.className = 'book-msg' + (cls ? ' ' + cls : ''); msg.textContent = t; }
-
-  form.addEventListener('submit', function(e){
-    e.preventDefault();
-    if (document.getElementById('bHoney').value) return;
-    var name = document.getElementById('bName'), email = document.getElementById('bEmail');
-    if (!name.value.trim()){ say('Please enter your name.', 'err'); name.focus(); return; }
-    if (!email.value || !email.checkValidity()){ say('Please enter a valid email address.', 'err'); email.focus(); return; }
-    if (!ci.value || !co.value){ say('Please choose check-in and check-out dates.', 'err'); return; }
-    var nights = Math.round((new Date(co.value) - new Date(ci.value)) / 86400000);
-    if (nights < 1){ say('Check-out must be at least one night after check-in.', 'err'); return; }
-    var addons = Array.prototype.map.call(form.querySelectorAll('input[name="addons"]:checked'), function(x){ return x.value; }).join(', ') || 'None';
-    var data = {
-      _subject: 'Booking request: ' + fmt(ci.value) + ' to ' + fmt(co.value) + ' (' + name.value.trim() + ')',
-      _template: 'table', _captcha: 'false', _replyto: email.value, _url: location.href, Website: location.href,
-      Name: name.value.trim(), Email: email.value, Phone: document.getElementById('bPhone').value || 'Not provided',
-      'Check-in': fmt(ci.value), 'Check-out': fmt(co.value), Nights: String(nights),
-      Guests: document.getElementById('guests').value, 'Add-ons': addons,
-      Message: document.getElementById('bMsgText').value || 'None'
-    };
-    btn.disabled = true; btn.textContent = 'Sending\u2026'; say('');
-    fetch('https://formsubmit.co/ajax/' + BOOKING_EMAIL, {
-      method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(data)
-    }).then(function(r){ return r.json().catch(function(){ return {}; }).then(function(j){ if (!r.ok || String(j.success) === 'false') { var er = new Error(j.message || ('Error ' + r.status)); er.server = j.message; throw er; } }); })
-    .then(function(){
-      say('Thank you, ' + data.Name.split(' ')[0] + '. Your request for ' + nights + ' night' + (nights > 1 ? 's' : '') + ' has been sent. We\u2019ll reply by email shortly.', 'ok');
-      form.reset(); co.min = iso;
-    })
-    .catch(function(err){
-      if (err && err.server && /activat/i.test(err.server)) {
-        say('Almost there: this form must be activated once. An activation email has been sent to ' + BOOKING_EMAIL + '. Click \u201cActivate Form\u201d in that email, then send your request again.', 'err');
-        return;
-      }
-      var body = Object.keys(data).filter(function(k){ return k.charAt(0) !== '_'; }).map(function(k){ return k + ': ' + data[k]; }).join('\n');
-      msg.className = 'book-msg err';
-      msg.innerHTML = 'We couldn\u2019t send your request just now. <a href="mailto:' + BOOKING_EMAIL + '?subject=' + encodeURIComponent(data._subject) + '&body=' + encodeURIComponent(body) + '">Email it to us instead</a>.' + (err && err.server ? ' (' + err.server.replace(/</g,'&lt;') + ')' : '');
-    })
-    .then(function(){ btn.disabled = false; btn.textContent = 'Send booking request'; });
-  });
-
   document.getElementById('listForm').addEventListener('submit', function(e){
     e.preventDefault();
     var em = document.getElementById('email'), m = document.getElementById('listMsg');
