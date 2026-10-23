@@ -233,7 +233,7 @@ footer{background:var(--lagoon);color:var(--on-dark);padding:80px 0 0}
           <a href="#gallery">Gallery</a><a href="#location">Location</a><a href="#rates">Rates</a><a href="#contact">Contact</a>
         </div>
       </details>
-      <a class="btn" href="#book">Check availability</a>
+      <a class="btn" href="#book">Request to book</a>
     </nav>
   </div>
 </header>
@@ -253,7 +253,8 @@ footer{background:var(--lagoon);color:var(--on-dark);padding:80px 0 0}
   <section class="book" id="book" aria-labelledby="book-title">
     <div class="wrap">
       <h2 id="book-title" style="font-size:30px;margin-bottom:8px">Request a booking</h2>
-      <p class="muted" style="margin-bottom:18px">Send your dates and our reservations team will confirm availability and rates by email.</p>
+      <p class="muted" style="margin-bottom:6px">Step 1: Send your dates and any add-ons. Our reservations team will review your request and reply by email.</p>
+      <p class="muted" style="margin-bottom:18px">Step 2: Once your request is approved, complete your reservation online using the Book now button below.</p>
       <form class="book-card" id="bookForm" novalidate>
         <label class="field">Full name *<input type="text" name="name" id="bName" autocomplete="name" required></label>
         <label class="field">Email *<input type="email" name="email" id="bEmail" autocomplete="email" required></label>
@@ -277,7 +278,17 @@ footer{background:var(--lagoon);color:var(--on-dark);padding:80px 0 0}
         <button class="btn" type="submit" id="bSubmit" style="grid-column:1/-1;justify-self:start">Send booking request</button>
       </form>
       <p class="book-msg" id="bookMsg" aria-live="polite"></p>
-      <p class="book-note muted">Booking requests are not confirmed until our team replies. Prefer to chat? <a href="https://wa.me/16492316607" target="_blank" rel="noopener">Message us on WhatsApp</a>.</p>
+      <div class="book-card" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 28px;margin-top:20px">
+        <div style="display:flex;flex-direction:column;gap:6px;max-width:56ch">
+          <h3 style="font-size:24px">Request approved?</h3>
+          <p class="muted">Check availability and complete your reservation online.</p>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:12px">
+          <a class="btn ghost" href="https://secure.webrez.com/hotel/2781/?package_id=326805" target="_blank" rel="noopener" style="min-height:54px;padding:0 28px;font-size:17px;color:var(--teal)">Check availability</a>
+          <a class="btn" href="https://secure.webrez.com/hotel/2781/?package_id=326805" target="_blank" rel="noopener" style="min-height:54px;padding:0 32px;font-size:17px">Book now</a>
+        </div>
+      </div>
+      <p class="book-note muted">Booking requests are not confirmed until our team approves them. Prefer to chat? <a href="https://wa.me/16492316607" target="_blank" rel="noopener">Message us on WhatsApp</a>.</p>
     </div>
   </section>
 
